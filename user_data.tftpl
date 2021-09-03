@@ -20,17 +20,6 @@ sudo apt update
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 sudo apt install bashtop -y
 
-# Docker Machine
-base=https://github.com/docker/machine/releases/download/v0.16.0 
-curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine 
-sudo mv /tmp/docker-machine /usr/local/bin/docker-machine 
-chmod +x /usr/local/bin/docker-machine
-
-# Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-docker-compose --version
-
 # Bash Completion
 sudo curl https://raw.githubusercontent.com/docker/machine/v0.16.0/contrib/completion/bash/docker-machine.bash -o /etc/bash_completion.d/docker-machine
 
@@ -52,7 +41,8 @@ fi
 
 # Hosts
 i="0"
-sudo echo "\n # Add all Nodes" >> /etc/hosts
+sudo echo "" >> /etc/hosts
+sudo echo "# Add all Nodes" >> /etc/hosts
 while [ $i -lt ${num} ]
 do
 if [ $i -eq 0 ]

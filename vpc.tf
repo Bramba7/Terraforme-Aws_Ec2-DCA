@@ -3,7 +3,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "VPC_${var.env}"
+    Name        = "VPC_${var.env}"
     Environment = var.env
     Provisioner = "Terraform"
   }
@@ -13,7 +13,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "IGW_${var.env}"
+    Name        = "IGW_${var.env}"
     Environment = var.env
     Provisioner = "Terraform"
   }
@@ -26,7 +26,7 @@ resource "aws_subnet" "public_subnet1" {
   availability_zone = "${var.region}a"
 
   tags = {
-    Name = "Public_Subnet_1_${var.env}"
+    Name        = "Public_Subnet_1_${var.env}"
     Environment = var.env
     Provisioner = "Terraform"
   }
@@ -40,7 +40,7 @@ resource "aws_route_table" "rtb_public" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    Name = "rtb_public_${var.env}"
+    Name        = "rtb_public_${var.env}"
     Environment = var.env
     Provisioner = "Terraform"
   }
@@ -90,7 +90,7 @@ resource "aws_security_group" "sg-ec2" {
   }
 
   tags = {
-    Name = "sg_for_EC2"
+    Name        = "sg_for_EC2"
     Environment = var.env
     Provisioner = "Terraform"
   }
