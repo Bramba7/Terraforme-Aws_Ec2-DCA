@@ -1,0 +1,75 @@
+#!/bin/bash 
+
+# basic-app
+sudo apt-get update
+sudo apt-get install apt-transport-https \
+                     ca-certificates \
+                     curl \
+                     gnupg2 \
+                     tree \
+                     jq \
+                     software-properties-common \
+                     bash-completion -y
+
+
+# Docker & Bashtop
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo add-apt-repository ppa:bashtop-monitor/bashtop
+sudo apt update
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+sudo apt install bashtop -y
+
+# Docker Machine
+base=https://github.com/docker/machine/releases/download/v0.16.0 
+curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine 
+sudo mv /tmp/docker-machine /usr/local/bin/docker-machine 
+chmod +x /usr/local/bin/docker-machine
+
+# Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+
+# Bash Completion
+sudo curl https://raw.githubusercontent.com/docker/machine/v0.16.0/contrib/completion/bash/docker-machine.bash -o /etc/bash_completion.d/docker-machine
+
+# Setup sudo to allow no-password sudo for your group and adding your user
+sudo groupadd -r docker
+sudo useradd -m -s /bin/bash ubuntu
+sudo usermod -a -G docker ubuntu
+
+# Change the hostname
+if [ ${machine} -eq 0 ]
+then
+    sudo hostnamectl set-hostname "master.docker-dca.example"
+elif [ ${machine+1} -eq ${num} ]
+then
+    sudo hostnamectl set-hostname "registry.docker-dca.example"
+else
+    sudo hostnamectl set-hostname "node0${machine}.docker-dca.example"
+fi
+
+# Hosts
+i="0"
+sudo echo "\n # Add all Nodes" >> /etc/hosts
+while [ $i -lt ${num} ]
+do
+if [ $i -eq 0 ]
+then
+    sudo echo "20.0.1.$(( i+10 )) master.docker-dca.example" >> /etc/hosts
+elif [ $(( i+1 )) -eq ${num} ]
+then
+    sudo echo "20.0.1.$(( i+10 )) registry.docker-dca.example" >> /etc/hosts
+else
+    sudo echo "20.0.1.$(( i+10 )) node0$i.docker-dca.example" >> /etc/hosts
+fi
+
+i=$(( i+1 ))
+done
+
+
+
+
+
+ 
