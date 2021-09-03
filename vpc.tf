@@ -4,6 +4,8 @@ resource "aws_vpc" "vpc" {
 
   tags = {
     Name = "VPC_${var.env}"
+    Environment = var.env
+    Provisioner = "Terraform"
   }
 }
 
@@ -12,6 +14,8 @@ resource "aws_internet_gateway" "igw" {
 
   tags = {
     Name = "IGW_${var.env}"
+    Environment = var.env
+    Provisioner = "Terraform"
   }
 }
 
@@ -23,6 +27,8 @@ resource "aws_subnet" "public_subnet1" {
 
   tags = {
     Name = "Public_Subnet_1_${var.env}"
+    Environment = var.env
+    Provisioner = "Terraform"
   }
 }
 
@@ -35,6 +41,8 @@ resource "aws_route_table" "rtb_public" {
   }
   tags = {
     Name = "rtb_public_${var.env}"
+    Environment = var.env
+    Provisioner = "Terraform"
   }
 }
 
@@ -44,7 +52,9 @@ resource "aws_route_table_association" "rtba_public1" {
 }
 
 ### Security Grups
-
+#####################                       Disclaimer                         #######################
+#### This SG setup is for academic purposes only, and should never be reproducible in production. ####
+######################################################################################################
 resource "aws_security_group" "sg-ec2" {
   name        = "sg_for_ec2"
   description = "Allow TLS inbound traffic"
@@ -81,5 +91,7 @@ resource "aws_security_group" "sg-ec2" {
 
   tags = {
     Name = "sg_for_EC2"
+    Environment = var.env
+    Provisioner = "Terraform"
   }
 }
