@@ -94,7 +94,7 @@ Terraform {
 
 **1\. Initialize terraform**
 
-Execute the below command to initialize.
+Execute the command below to initialize.
 
 ```sh
 $ terraform init
