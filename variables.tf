@@ -27,7 +27,7 @@ variable "ssh-key" {
 }
 variable "instance_replica" {
   description = "Number of instance"
-  default     = 4
+#  default     = 4
 }
 
 
