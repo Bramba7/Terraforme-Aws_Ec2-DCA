@@ -1,6 +1,6 @@
 # Terraforme-Aws_Ec2-DCA
 ![terraform](https://img.shields.io/badge/Terraform-v1.0.5-green)
-![aws](https://img.shields.io/badge/aws--cli-v1.20.31-green)
+![aws](https://img.shields.io/badge/aws--cli-v2.2.35-green)
 
 
 ## Getting Started
@@ -21,7 +21,7 @@ AWS:
 
 - [Windows](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
 - [OS X](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html)
-- [Linux](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+- [Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
 
 ## Terraform setup
 
