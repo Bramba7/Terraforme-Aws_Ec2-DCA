@@ -1,6 +1,8 @@
 # Terraforme-Aws_Ec2-DCA
 ![terraform](https://img.shields.io/badge/Terraform-v1.0.5-green)
 ![aws](https://img.shields.io/badge/aws--cli-v2.2.35-green)
+![GitHub top language](https://img.shields.io/github/languages/top/bramba7/Terraforme-Aws_Ec2-DCA)
+![GitHub last commit](https://img.shields.io/github/last-commit/bramba7/Terraforme-Aws_Ec2-DCA)
 
 
 ## Getting Started
