@@ -6,7 +6,7 @@ resource "aws_vpc" "vpc" {
     Name        = "VPC_${var.env}"
     Environment = var.env
     Provisioner = "Terraform"
-  }
+  }hghghgh
 }
 
 resource "aws_internet_gateway" "igw" {
